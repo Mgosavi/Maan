@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>LIC Insurance Solutions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            line-height: 1.6;
+            background-color: #f4f4f9;
+        }
+
+        header {
+            background-color: #0072c6;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        header img {
+            width: 80px;
+            margin-right: 20px;
+        }
+
+        .header-title h1 {
+            margin: 0;
+            font-size: 2em;
+        }
+
+        .header-title p {
+            margin: 5px 0 0;
+            font-size: 1em;
+            font-style: italic;
+        }
+
+        .header-contact {
+            margin-top: 10px;
+            font-size: 0.9em;
+        }
+
+        .header-contact a {
+            color: white;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        nav {
+            background-color: #005691;
+            padding: 10px 0;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            margin: 0 5px;
+            transition: background-color 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #003d6d;
+            border-radius: 4px;
+        }
+
+        section {
+            padding: 40px 5%;
+        }
+
+        .home-banner {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .home-banner img {
+            display: none; /* Hides the image */
+        }
+
+        .home-banner-content {
+            padding: 20px;
+            width: 100%;
+        }
+
+        .home-banner-content h2 {
+            color: #0072c6;
+            margin-top: 0;
+        }
+
+        .home-banner-content ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .home-banner-content li {
+            background: url('data:image/svg+xml;charset=UTF8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"%3E%3Cpath fill="%230072c6" d="M9 16.17l-4.17-4.17L3.5 13 9 18.5 20.5 7 19 5.5l-10 10z"%3E%3C/path%3E%3C/svg%3E') no-repeat left center;
+            background-size: 20px;
+            padding-left: 30px;
+            margin-bottom: 10px;
+        }
+
+        .services-section {
+            background-color: #e6f2ff;
+            text-align: center;
+        }
+
+        .services-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            text-align: left;
+            padding-bottom: 15px;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .service-card img {
+            display: none; /* Hides the images */
+        }
+
+        .service-title {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #0072c6;
+            padding: 10px 15px 5px;
+        }
+
+        .service-desc {
+            font-size: 0.9em;
+            color: #555;
+            padding: 0 15px;
+        }
+
+        .about-section, .contact-section {
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #0072c6;
+            border-bottom: 2px solid #0072c6;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-top: 0;
+        }
+
+        .about-text {
+            color: #333;
+        }
+
+        .contact-section form {
+            display: grid;
+            gap: 15px;
+        }
+
+        .contact-section label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .contact-section input, .contact-section textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .contact-section button {
+            background-color: #0072c6;
+            color: white;
+            border: none;
+            padding: 15px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-section button:hover {
+            background-color: #005691;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            font-size: 0.9em;
+        }
+
+        /* Popup Styles */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+            max-width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+        }
+        .popup-close {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #0072c6;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-title">
+            <h1>LIC Insurance Solutions</h1>
+            <p>Your Trusted Partner for Secure Futures</p>
+            <div class="header-contact">
+                📞 <a href="tel:9422949441">9422949441</a> | ✉️ <a href="mailto:gosavilic@gmail.com">gosavilic@gmail.com</a>
+            </div>
+        </div>
+    </header>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#services">Services & Policies</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <section class="home-banner" id="home">
+        <div class="home-banner-content">
+            <h2>Why Choose LIC?</h2>
+            <ul>
+                <li><b>Trusted for decades</b> – India’s largest and most reliable insurer.</li>
+                <li><b>Comprehensive cover</b> – Solutions for life, health, pension, and savings.</li>
+                <li><b>Guaranteed benefits</b> – Secure payouts on maturity and policy term completion.</li>
+                <li><b>Tax advantages</b> – Attractive tax savings on premiums and payouts.</li>
+                <li><b>Affordable premiums</b> – Wide range for every budget.</li>
+                <li><b>Bonus & loyalty additions</b> – Extra financial rewards for policyholders.</li>
+                <li><b>Easy claims process</b> – Smooth, hassle-free claims settlement.</li>
+                <li><b>Comparing to others:</b> LIC stands out with government-backed trust, high claim settlement ratio, and lifelong protection unlike typical private insurers.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section class="services-section" id="services">
+        <h2>LIC Services & Policy Plans</h2>
+        <ul class="services-list">
+            <li class="service-card" onclick="showPopup('jeevanAnand')">
+                <div class="service-title">Jeevan Anand</div>
+                <div class="service-desc">Life cover + savings; maturity benefits for family’s security.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('newEndowment')">
+                <div class="service-title">New Endowment Plan</div>
+                <div class="service-desc">Risk cover, savings + paid-up value for steady financial growth.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('jeevanAkshay')">
+                <div class="service-title">Jeevan Akshay VII</div>
+                <div class="service-desc">Immediate annuity for lifelong pension and retirement income.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('eTerm')">
+                <div class="service-title">e-Term Plan</div>
+                <div class="service-desc">Pure protection with affordable premiums for your loved ones.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('moneyBack20')">
+                <div class="service-title">Money Back Plan 20 Years</div>
+                <div class="service-desc">Periodic survival payouts plus full life cover.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('childrenMoneyBack')">
+                <div class="service-title">Children’s Money Back</div>
+                <div class="service-desc">Tailored for child’s education & marriage goals.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('jeevanShree')">
+                <div class="service-title">Jeevan Shree</div>
+                <div class="service-desc">Critical illness benefit + attractive savings.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('jeevanSuraksha')">
+                <div class="service-title">Jeevan Suraksha</div>
+                <div class="service-desc">Endowment plan for long-term life cover and thrift.</div>
+            </li>
+            <li class="service-card" onclick="showPopup('limitedPremium')">
+                <div class="service-title">Limited Premium Payment</div>
+                <div class="service-desc">Pay for a few years, benefit for the whole term.</div>
+            </li>
+        </ul>
+    </section>
+
+    <section class="about-section" id="about">
+        <h2>About Varsha Sanjay Gosavi</h2>
+        <p class="about-text">
+            Varsha Sanjay Gosavi's journey with LIC is a testament to dedication and resilience. Starting from humble beginnings, she faced numerous challenges but remained steadfast in her mission to provide financial security to families. Through hard work and unwavering belief in the value of insurance, she has touched countless lives.
+        </p>
+        <p class="about-text">
+            Today, Varsha stands as a beacon of trust and reliability in the insurance sector. Her commitment to her clients and her passion for her work have made her a respected figure in the industry. She continues to inspire others with her story of perseverance and success.
+        </p>
+    </section>
+
+    <section class="contact-section" id="contact">
+        <h2>Get in Touch</h2>
+        <form id="contactForm" action="https://formspree.io/f/meolpjkb" method="POST">
+            <label for="contactName">Full Name</label>
+            <input type="text" id="contactName" name="name" required />
+            <label for="contactEmail">Email</label>
+            <input type="email" id="contactEmail" name="email" required />
+            <label for="contactPhone">Phone Number</label>
+            <input type="tel" id="contactPhone" name="phone" required pattern="[0-9]{10}" />
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer>
+        <p>© 2025 Maan tech solu. All rights reserved.</p>
+    </footer>
+
+    <div class="popup-overlay" id="popupOverlay" onclick="closePopup()"></div>
+
+    <div class="popup" id="popup">
+        <button class="popup-close" onclick="closePopup()">X</button>
+        <h3 id="popupTitle"></h3>
+        <p id="popupContent"></p>
+    </div>
+
+    <script>
+        // Policy Details
+        const policyDetails = {
+            jeevanAnand: {
+                title: "LIC's New Jeevan Anand (Plan No. 815)",
+                content: "This is a classic combination of an endowment and a whole life plan. It provides a death benefit throughout the life of the insured, even after the maturity benefit is paid. It's an ideal choice for dual protection and long-term savings."
+            },
+            newEndowment: {
+                title: "LIC's New Endowment Plan (Plan No. 814)",
+                content: "A traditional participating endowment plan. It offers a combination of protection and savings. The plan provides a lump sum on maturity or upon the death of the policyholder, along with a bonus. It's a simple, low-risk savings plan."
+            },
+            jeevanAkshay: {
+                title: "LIC's Jeevan Akshay VII (Plan No. 857)",
+                content: "An immediate annuity plan. You pay a single lump-sum premium and, in return, receive a regular, fixed pension for your entire life. This is a great choice for retirement planning and ensuring a steady income stream."
+            },
+            eTerm: {
+                title: "LIC's e-Term Plan (Plan No. 855)",
+                content: "A pure protection plan with affordable premiums. This is a non-participating, non-linked online term assurance plan. It offers a large sum assured for a small premium, providing financial security for your family in the event of an unforeseen tragedy."
+            },
+            moneyBack20: {
+                title: "LIC's Money Back Plan 20 Years (Plan No. 920)",
+                content: "This plan offers periodic 'survival benefits' at regular intervals during the policy term. The full sum assured is paid on the death of the policyholder, regardless of previous survival benefit payouts. A final maturity benefit is also paid at the end of the term."
+            },
+            childrenMoneyBack: {
+                title: "LIC's New Children’s Money Back Plan (Plan No. 832)",
+                content: "A plan designed to meet the financial needs of a child's education and marriage. It offers survival benefits at specific ages of the child and a maturity benefit at the end of the term. The policy can be registered in the child’s name."
+            },
+            jeevanShree: {
+                title: "LIC's Jeevan Shree (Plan No. 175)",
+                content: "This is a specialized, high-value endowment plan, often tailored for high-income groups. It offers a combination of a substantial life cover and guaranteed additions. It can also be enhanced with optional riders for critical illness benefits."
+            },
+            jeevanSuraksha: {
+                title: "LIC's Jeevan Suraksha (Plan No. 147)",
+                content: "A traditional deferred annuity plan. This is a pension-oriented plan that allows you to build a retirement corpus over a long period. At the end of the term, you can use the accumulated funds to purchase an annuity for a regular pension."
+            },
+            limitedPremium: {
+                title: "LIC's Limited Premium Payment Plan (Plan No. 858)",
+                content: "This plan is perfect for those who want to pay premiums for a shorter period but receive life cover for a longer term. You can choose to pay premiums for 5, 10, or 15 years, while the life cover continues for the entire policy term."
+            }
+        };
+
+        const popup = document.getElementById('popup');
+        const popupOverlay = document.getElementById('popupOverlay');
+        const popupTitle = document.getElementById('popupTitle');
+        const popupContent = document.getElementById('popupContent');
+
+        function showPopup(policyId) {
+            const policy = policyDetails[policyId];
+            if (policy) {
+                popupTitle.textContent = policy.title;
+                popupContent.textContent = policy.content;
+                popup.style.display = 'block';
+                popupOverlay.style.display = 'block';
+            }
+        }
+
+        function closePopup() {
+            popup.style.display = 'none';
+            popupOverlay.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
